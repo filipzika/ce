@@ -169,11 +169,24 @@
         { value: 'removable', label: 'Ano, vyměnitelná / vyjímatelná', desc: '' },
         { value: 'none', label: 'Ne', desc: '' }
       ],
+      next: function () { return 'food_contact'; }
+    },
+
+    food_contact: {
+      id: 'food_contact',
+      slot: 7,
+      title: 'Přichází zařízení do přímého kontaktu s potravinami?',
+      help: 'Např. varná deska, nádobka mixéru, tryska kávovaru, deska kuchyňské váhy — nikoli jen okolní vzduch.',
+      type: 'single',
+      options: [
+        { value: 'yes', label: 'Ano', desc: '' },
+        { value: 'no', label: 'Ne', desc: '' }
+      ],
       next: function () { return null; }
     }
   };
 
-  var TOTAL_SLOTS = 6;
+  var TOTAL_SLOTS = 7;
 
   // ---- Pravidla ----------------------------------------------------------
   // Každý klíč "questionId.hodnota" mapuje na příspěvky do výsledného přehledu.
@@ -361,7 +374,26 @@
       ],
       notes: [{ level: 'info', text: 'Požadavek na snadnou vyjímatelnost baterie koncovým uživatelem je již splněn.' }]
     },
-    'battery.none': {}
+    'battery.none': {},
+
+    'food_contact.yes': {
+      directives: [
+        { code: 'ES 1935/2004', name: 'Rámcové nařízení o materiálech pro styk s potravinami (FCM)', reason: 'Zařízení přichází do přímého kontaktu s potravinami', verification: 'test', verificationNote: 'Migrační zkoušky (celková a specifická migrace) v potravinových simulantech dle podmínek skutečného použití.' },
+        { code: 'ES 2023/2006', name: 'GMP — správná výrobní praxe pro FCM', reason: 'Vztahuje se na výrobu materiálů/předmětů určených pro styk s potravinami', verification: 'doc', verificationNote: 'Dokumentace výrobního procesu a systému kvality (GMP), bez nutnosti zkoušení hotového výrobku.' },
+        { code: 'EU 10/2011', name: 'Nařízení o plastových materiálech a předmětech pro styk s potravinami', reason: 'Uplatní se, je-li díl v kontaktu s potravinou vyroben z plastu (pozitivní seznam látek, migrační limity)', verification: 'test', verificationNote: 'Migrační zkoušky specifické pro plast v příslušných potravinových simulantech.' }
+      ],
+      markings: [
+        { code: 'FCM-symbol', label: 'Piktogram „sklenička a vidlička“', reason: 'Povinné označení materiálů pro styk s potravinami, není-li určení výrobku ke styku s potravinou zjevné' }
+      ],
+      docs: [
+        { code: 'doc-fcm-doc', text: 'Prohlášení o shodě pro styk s potravinami (DoC FCM) — samostatný dokument od DoC pro CE' },
+        { code: 'doc-fcm-trace', text: 'Sledovatelnost materiálu/dílu v kontaktu s potravinou v celém dodavatelském řetězci' }
+      ],
+      notes: [
+        { level: 'warning', text: 'Legislativa o styku s potravinami je nezávislá na CE režimu pro elektrozařízení a běží souběžně s ním. Pro materiály bez harmonizované EU úpravy (kov, sklo, keramika, silikon) se často uplatní národní legislativa (v ČR vyhláška MZd) — ověřte požadavky cílového členského státu.' }
+      ]
+    },
+    'food_contact.no': {}
   };
 
   var STANDARD_CATEGORY_LABELS = {
