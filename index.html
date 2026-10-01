@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Průvodce certifikací elektronických zařízení pro EU</title>
+<meta name="description" content="Interaktivní průvodce, který na základě odpovědí na několik otázek určí, jaké CE certifikace, směrnice EU, harmonizované normy a povinná dokumentace se vztahují na vaše elektronické zařízení.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-10 no-print">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white font-mono text-sm font-bold">CE</span>
+        <span class="font-semibold text-slate-900">Průvodce certifikací EU</span>
+      </div>
+      <span class="hidden sm:inline text-xs font-mono uppercase tracking-widest text-slate-400">Elektronická zařízení</span>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-10 sm:py-14">
+    <div class="mb-8 no-print">
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Jaké certifikace potřebuje vaše zařízení?</h1>
+      <p class="text-slate-500 max-w-2xl">Odpovězte na několik otázek o vašem elektronickém zařízení a získejte přehled požadovaných označení, směrnic EU, harmonizovaných norem a povinné dokumentace pro uvedení na trh.</p>
+    </div>
+
+    <div id="wizardRoot" class="wizard-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-10"></div>
+
+    <p class="mt-6 text-xs text-slate-400 no-print">Tento nástroj poskytuje pouze orientační přehled a nenahrazuje odborné právní posouzení shody.</p>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 no-print">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
+      <span>&copy; <span id="year"></span> Průvodce certifikací EU</span>
+      <span>LVD · EMC · RED · RoHS · REACH · WEEE · GPSR · Nařízení o bateriích</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="js/wizard-data.js"></script>
+  <script src="js/wizard.js"></script>
+</body>
+</html>
